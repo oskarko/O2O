@@ -105,13 +105,13 @@ extension HomeViewController: HomeViewControllerProtocol {
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.beers.count
+        return 5 //viewModel.beers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.text = ""
+        content.text = "si lo digo"
         cell.contentConfiguration = content
         return cell
     }

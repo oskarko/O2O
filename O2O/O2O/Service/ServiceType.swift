@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+enum ServiceType {
+     case data
+    
+    var urlString: String {
+        switch self {
+        case .data: return "https://api.punkapi.com/v2/beers"
+        }
+    }
+}
