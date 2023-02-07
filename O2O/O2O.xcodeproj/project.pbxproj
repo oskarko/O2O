@@ -16,6 +16,14 @@
 		F65DC1F829929E93003010B1 /* O2OTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1F729929E93003010B1 /* O2OTests.swift */; };
 		F65DC20229929E93003010B1 /* O2OUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC20129929E93003010B1 /* O2OUITests.swift */; };
 		F65DC20429929E93003010B1 /* O2OUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC20329929E93003010B1 /* O2OUITestsLaunchTests.swift */; };
+		F65DC21529929F4F003010B1 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21129929F4F003010B1 /* HomeRouter.swift */; };
+		F65DC21629929F4F003010B1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21229929F4F003010B1 /* HomeViewController.swift */; };
+		F65DC21729929F4F003010B1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21329929F4F003010B1 /* HomeViewModel.swift */; };
+		F65DC21829929F4F003010B1 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F65DC21429929F4F003010B1 /* HomeViewController.xib */; };
+		F65DC21E29929F77003010B1 /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21A29929F77003010B1 /* DetailsRouter.swift */; };
+		F65DC21F29929F77003010B1 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21B29929F77003010B1 /* DetailsViewController.swift */; };
+		F65DC22029929F77003010B1 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21C29929F77003010B1 /* DetailsViewModel.swift */; };
+		F65DC22129929F77003010B1 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F65DC21D29929F77003010B1 /* DetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		F65DC1FD29929E93003010B1 /* O2OUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = O2OUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65DC20129929E93003010B1 /* O2OUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = O2OUITests.swift; sourceTree = "<group>"; };
 		F65DC20329929E93003010B1 /* O2OUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = O2OUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F65DC21129929F4F003010B1 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		F65DC21229929F4F003010B1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F65DC21329929F4F003010B1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F65DC21429929F4F003010B1 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		F65DC21A29929F77003010B1 /* DetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
+		F65DC21B29929F77003010B1 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		F65DC21C29929F77003010B1 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		F65DC21D29929F77003010B1 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +115,8 @@
 		F65DC1DF29929E91003010B1 /* O2O */ = {
 			isa = PBXGroup;
 			children = (
+				F65DC21929929F57003010B1 /* Details */,
+				F65DC21029929F2D003010B1 /* Home */,
 				F65DC1E029929E91003010B1 /* AppDelegate.swift */,
 				F65DC1E229929E91003010B1 /* SceneDelegate.swift */,
 				F65DC1E429929E91003010B1 /* ViewController.swift */,
@@ -125,6 +143,28 @@
 				F65DC20329929E93003010B1 /* O2OUITestsLaunchTests.swift */,
 			);
 			path = O2OUITests;
+			sourceTree = "<group>";
+		};
+		F65DC21029929F2D003010B1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F65DC21129929F4F003010B1 /* HomeRouter.swift */,
+				F65DC21229929F4F003010B1 /* HomeViewController.swift */,
+				F65DC21329929F4F003010B1 /* HomeViewModel.swift */,
+				F65DC21429929F4F003010B1 /* HomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F65DC21929929F57003010B1 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				F65DC21A29929F77003010B1 /* DetailsRouter.swift */,
+				F65DC21B29929F77003010B1 /* DetailsViewController.swift */,
+				F65DC21C29929F77003010B1 /* DetailsViewModel.swift */,
+				F65DC21D29929F77003010B1 /* DetailsViewController.xib */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +273,9 @@
 			files = (
 				F65DC1ED29929E93003010B1 /* LaunchScreen.storyboard in Resources */,
 				F65DC1EA29929E93003010B1 /* Assets.xcassets in Resources */,
+				F65DC22129929F77003010B1 /* DetailsViewController.xib in Resources */,
 				F65DC1E829929E91003010B1 /* Main.storyboard in Resources */,
+				F65DC21829929F4F003010B1 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +300,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F65DC21629929F4F003010B1 /* HomeViewController.swift in Sources */,
+				F65DC21729929F4F003010B1 /* HomeViewModel.swift in Sources */,
 				F65DC1E529929E91003010B1 /* ViewController.swift in Sources */,
+				F65DC21F29929F77003010B1 /* DetailsViewController.swift in Sources */,
+				F65DC21529929F4F003010B1 /* HomeRouter.swift in Sources */,
 				F65DC1E129929E91003010B1 /* AppDelegate.swift in Sources */,
 				F65DC1E329929E91003010B1 /* SceneDelegate.swift in Sources */,
+				F65DC21E29929F77003010B1 /* DetailsRouter.swift in Sources */,
+				F65DC22029929F77003010B1 /* DetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
