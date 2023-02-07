@@ -17,4 +17,6 @@ class DetailsViewModel {
     
     // MARK: - Helpers
     
+    
+    
 }

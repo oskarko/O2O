@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol HomeViewControllerProtocol: AnyObject {
-    
+    func reload()
 }
 
 class HomeViewController: UIViewController  {
@@ -35,9 +36,10 @@ class HomeViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        viewModel.viewDidLoad()
         
     }
-
+    
     // MARK: - Selectors
     @objc func handleShowSearchBar() {
         search(shouldShow: true)
@@ -54,7 +56,7 @@ class HomeViewController: UIViewController  {
         
         searchBar.sizeToFit()
         searchBar.delegate = self
-        searchBar.placeholder = "Search for an item"
+        searchBar.placeholder = "Search your beer"
         definesPresentationContext = false
         
         if let textField = searchBar.value(forKey: "searchField") as? UITextField {
@@ -74,8 +76,8 @@ class HomeViewController: UIViewController  {
                 tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         }
-
-
+        
+        
     }
     
     private func showSearchBarButton(shouldShow: Bool) {
@@ -101,17 +103,25 @@ class HomeViewController: UIViewController  {
 
 extension HomeViewController: HomeViewControllerProtocol {
     
+    func reload(){
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 //viewModel.beers.count
+        return viewModel.beers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.text = "si lo digo"
+        content.text = viewModel.beers[indexPath.row].name
+        content.secondaryText = viewModel.beers[indexPath.row].tagline
         cell.contentConfiguration = content
         return cell
     }
@@ -132,6 +142,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchByFood(searchText: searchText)
         print("DEBUG: Search text is: \(searchText)")
     }
     
