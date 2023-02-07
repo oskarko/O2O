@@ -15,6 +15,8 @@ class HomeViewModel {
     weak var view: HomeViewControllerProtocol?
     var router: HomeRouter?
     
+    var beers = [BeerModel]()
+    
     // MARK: - Helpers
     
 }

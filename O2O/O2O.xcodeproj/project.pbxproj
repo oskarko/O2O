@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ECAF64D52992A626002EE2EA /* BeerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF64D42992A626002EE2EA /* BeerModel.swift */; };
+		ECAF64DA2992ABD4002EE2EA /* extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF64D92992ABD4002EE2EA /* extension+UIViewController.swift */; };
 		F65DC1E129929E91003010B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1E029929E91003010B1 /* AppDelegate.swift */; };
 		F65DC1E329929E91003010B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1E229929E91003010B1 /* SceneDelegate.swift */; };
 		F65DC1EA29929E93003010B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65DC1E929929E93003010B1 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		ECAF64D42992A626002EE2EA /* BeerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerModel.swift; sourceTree = "<group>"; };
+		ECAF64D92992ABD4002EE2EA /* extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIViewController.swift"; sourceTree = "<group>"; };
 		F65DC1DD29929E91003010B1 /* O2O.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = O2O.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65DC1E029929E91003010B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F65DC1E229929E91003010B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		ECAF64D82992ABAC002EE2EA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				ECAF64D92992ABD4002EE2EA /* extension+UIViewController.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		F65DC1D429929E91003010B1 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 		F65DC1DF29929E91003010B1 /* O2O */ = {
 			isa = PBXGroup;
 			children = (
+				ECAF64D82992ABAC002EE2EA /* Utils */,
 				ECAF64D22992A082002EE2EA /* Model */,
 				ECAF64D12992A077002EE2EA /* Service */,
 				ECAF64D02992A060002EE2EA /* UI */,
@@ -328,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAF64DA2992ABD4002EE2EA /* extension+UIViewController.swift in Sources */,
 				F65DC21629929F4F003010B1 /* HomeViewController.swift in Sources */,
 				F65DC21729929F4F003010B1 /* HomeViewModel.swift in Sources */,
 				ECAF64D52992A626002EE2EA /* BeerModel.swift in Sources */,

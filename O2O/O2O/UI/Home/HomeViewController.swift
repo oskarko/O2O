@@ -9,33 +9,90 @@
 import UIKit
 
 protocol HomeViewControllerProtocol: AnyObject {
-
+    
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController  {
     
     // MARK: - Properties
     
     var viewModel: HomeViewModel!
     
+    private let searchBar = UISearchBar()
+    lazy var tableView: UITableView = {
+        let tableView  = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 80.0
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
+    }()
+    
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
+        
     }
-    
 
     // MARK: - Selectors
-
-    
+    @objc func handleShowSearchBar() {
+        search(shouldShow: true)
+        searchBar.becomeFirstResponder()
+    }
     // MARK: - Helpers
-
+    
     private func configureUI() {
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .white
+        
+        configureNavigationBar(withTitle: "Search Bar", prefersLargeTitles: true, barTintColor: .systemPink)
+        
+        showSearchBarButton(shouldShow: true)
+        
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        searchBar.placeholder = "Search for an item"
+        definesPresentationContext = false
+        
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = .darkGray
+            textField.backgroundColor = .white
+        }
+        
+        view.addSubview(tableView)
+        var topPadding: CGFloat = 0.0
+        if let topInset = UIApplication.shared.windows.first?.safeAreaInsets.top {
+            topPadding = topInset
+            
+            NSLayoutConstraint.activate([
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
 
+
+    }
+    
+    private func showSearchBarButton(shouldShow: Bool) {
+        if shouldShow {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                                target: self,
+                                                                action: #selector(handleShowSearchBar))
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    private func search(shouldShow: Bool) {
+        showSearchBarButton(shouldShow: !shouldShow)
+        searchBar.showsCancelButton = shouldShow
+        navigationItem.titleView = shouldShow ? searchBar : nil
+        
     }
     
 }
@@ -43,5 +100,39 @@ class HomeViewController: UIViewController {
 // MARK: - HomeViewControllerProtocol
 
 extension HomeViewController: HomeViewControllerProtocol {
+    
+}
 
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.beers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.text = ""
+        cell.contentConfiguration = content
+        return cell
+    }
+    
+    
+}
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        search(shouldShow: false)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("DEBUG: Search bar did begin editing...")
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("DEBUG: Search bar did end editing...")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("DEBUG: Search text is: \(searchText)")
+    }
+    
 }
