@@ -110,21 +110,6 @@ class HomeViewController: UIViewController  {
             textField.textColor = .darkGray
             textField.backgroundColor = .lightText
         }
-        
-        view.addSubview(tableView)
-        tableView.anchor(top: nonAlcoholicLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor
-                             )
-//        var topPadding: CGFloat = 0.0
-//        if let topInset = UIApplication.shared.windows.first?.safeAreaInsets.top {
-//            topPadding = topInset
-//
-//            NSLayoutConstraint.activate([
-//                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//                tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
-//                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//            ])
-  //      }
 
         view.addSubview(randomButton)
         randomButton.setDimensions(height: 50, width: 50)
@@ -148,6 +133,10 @@ class HomeViewController: UIViewController  {
         nonAlcoholicSwitch.anchor(top: nonAlcoholicLabel.topAnchor,
                                   left: nonAlcoholicLabel.rightAnchor, right: view.safeAreaLayoutGuide.rightAnchor,
                                   paddingTop: 10, paddingLeft: 40, paddingRight: 20)
+
+        view.addSubview(tableView)
+        tableView.anchor(top: nonAlcoholicLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor
+                             )
 
     }
     
