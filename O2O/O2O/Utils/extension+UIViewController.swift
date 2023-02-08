@@ -16,7 +16,7 @@ extension UIViewController {
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.darkGray]
         appearance.backgroundColor = barTintColor
         
         navigationController?.navigationBar.standardAppearance = appearance
@@ -25,7 +25,7 @@ extension UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
         navigationItem.title = title
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .darkGray
         navigationController?.navigationBar.isTranslucent = true
         
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark

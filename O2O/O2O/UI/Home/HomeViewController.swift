@@ -19,6 +19,8 @@ class HomeViewController: UIViewController  {
     
     var viewModel: HomeViewModel!
     
+    private let barTintColor = UIColor(red: 247/255, green: 132/255, blue: 15/255, alpha: 1.0)
+    
     private let searchBar = UISearchBar()
     lazy var tableView: UITableView = {
         let tableView  = UITableView()
@@ -48,9 +50,8 @@ class HomeViewController: UIViewController  {
     // MARK: - Helpers
     
     private func configureUI() {
-        view.backgroundColor = .white
-        
-        configureNavigationBar(withTitle: "Search your beer", prefersLargeTitles: true, barTintColor: .systemPink)
+  
+        configureNavigationBar(withTitle: "Find your beer", prefersLargeTitles: true, barTintColor: barTintColor)
         
         showSearchBarButton(shouldShow: true)
         
@@ -114,7 +115,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell {
             cell.itemImage.sd_setImage(with: URL(string: viewModel.beers[indexPath.row].imageURL))
             cell.itemNameLabel.text = viewModel.beers[indexPath.row].name
-            cell.itemDescriptionLabel.text = viewModel.beers[indexPath.row].description
+            cell.itemDescriptionLabel.text = viewModel.beers[indexPath.row].tagline
             return cell
         }
 

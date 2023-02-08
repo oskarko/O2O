@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol DetailsViewControllerProtocol: AnyObject {
 
@@ -18,9 +19,14 @@ class DetailsViewController: UIViewController {
     
     var viewModel: DetailsViewModel!
     
+    @IBOutlet weak var imageDetail: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +40,10 @@ class DetailsViewController: UIViewController {
     // MARK: - Helpers
 
     private func configureUI() {
-        view.backgroundColor = .systemPurple
+        imageDetail.sd_setImage(with: URL(string: viewModel.beer?.imageURL ?? ""))
+        nameLabel.text = viewModel.beer?.name
+        descriptionLabel.text = viewModel.beer?.description
+        
 
     }
     

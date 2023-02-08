@@ -12,13 +12,13 @@
 		EC398A142992B4BF00FB488C /* ResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC398A132992B4BF00FB488C /* ResultResponse.swift */; };
 		EC398A162992B52200FB488C /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC398A152992B52200FB488C /* ServiceType.swift */; };
 		EC398A192992BE2400FB488C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EC398A182992BE2400FB488C /* SDWebImage */; };
+		EC84969F299376F4002A3A75 /* O2OTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1F729929E93003010B1 /* O2OTests.swift */; };
 		ECAF64D52992A626002EE2EA /* BeerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF64D42992A626002EE2EA /* BeerModel.swift */; };
 		ECAF64DA2992ABD4002EE2EA /* extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF64D92992ABD4002EE2EA /* extension+UIViewController.swift */; };
 		F65DC1E129929E91003010B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1E029929E91003010B1 /* AppDelegate.swift */; };
 		F65DC1E329929E91003010B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1E229929E91003010B1 /* SceneDelegate.swift */; };
 		F65DC1EA29929E93003010B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65DC1E929929E93003010B1 /* Assets.xcassets */; };
 		F65DC1ED29929E93003010B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F65DC1EB29929E93003010B1 /* LaunchScreen.storyboard */; };
-		F65DC1F829929E93003010B1 /* O2OTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC1F729929E93003010B1 /* O2OTests.swift */; };
 		F65DC20229929E93003010B1 /* O2OUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC20129929E93003010B1 /* O2OUITests.swift */; };
 		F65DC20429929E93003010B1 /* O2OUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC20329929E93003010B1 /* O2OUITestsLaunchTests.swift */; };
 		F65DC21529929F4F003010B1 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21129929F4F003010B1 /* HomeRouter.swift */; };
@@ -400,7 +400,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F65DC1F829929E93003010B1 /* O2OTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F65DC20229929E93003010B1 /* O2OUITests.swift in Sources */,
+				EC84969F299376F4002A3A75 /* O2OTests.swift in Sources */,
 				F65DC20429929E93003010B1 /* O2OUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
