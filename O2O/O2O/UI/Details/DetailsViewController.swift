@@ -20,9 +20,7 @@ class DetailsViewController: UIViewController {
     var viewModel: DetailsViewModel!
     
     @IBOutlet weak var imageDetail: UIImageView!
-    
     @IBOutlet weak var nameLabel: UILabel!
-
     @IBOutlet weak var descriptionLabel: UILabel!
     
     
@@ -40,11 +38,14 @@ class DetailsViewController: UIViewController {
     // MARK: - Helpers
 
     private func configureUI() {
-        imageDetail.sd_setImage(with: URL(string: viewModel.beer?.imageURL ?? ""))
-        nameLabel.text = viewModel.beer?.name
-        descriptionLabel.text = viewModel.beer?.description
-        
-
+        guard let beer = viewModel.beer else { return }
+        if let imageURL = beer.imageURL {
+            imageDetail.sd_setImage(with: URL(string: imageURL))
+        } else {
+            imageDetail.image = UIImage(named: "beer")
+        }
+        nameLabel.text = beer.name
+        descriptionLabel.text = beer.description
     }
     
 }

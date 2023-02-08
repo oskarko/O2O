@@ -8,11 +8,13 @@
 import Foundation
 
 enum ServiceType {
-     case data
+    case data
+    case random
     
     var urlString: String {
         switch self {
         case .data: return "https://api.punkapi.com/v2/beers?food="
+        case .random: return "https://api.punkapi.com/v2/beers/random"
         }
     }
 }
