@@ -46,6 +46,23 @@ class HomeViewController: UIViewController  {
         return button
     }()
     
+    private let nonAlcoholicLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.text = "Non-Alcoholic: "
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let nonAlcoholicSwitch: UISwitch = {
+        let switchControl  = UISwitch()
+        switchControl.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
+        switchControl.isOn = true
+        switchControl.isEnabled = true
+        switchControl.onTintColor =  UIColor(red: 247/255, green: 132/255, blue: 15/255, alpha: 1.0)
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
+        switchControl.setOn(true, animated: false)
+        return switchControl
+    }()
     
     // MARK: - Lifecycle
     
@@ -65,6 +82,16 @@ class HomeViewController: UIViewController  {
     @objc func showRandomBeer() {
         viewModel.showRandomBeer()
     }
+    
+    @objc func switchStateDidChange(_ sender:UISwitch!)
+       {
+           if (sender.isOn == true){
+               print("UISwitch state is now ON")
+           }
+           else{
+               print("UISwitch state is now Off")
+           }
+       }
 
     // MARK: - Helpers
     
@@ -85,17 +112,19 @@ class HomeViewController: UIViewController  {
         }
         
         view.addSubview(tableView)
-        var topPadding: CGFloat = 0.0
-        if let topInset = UIApplication.shared.windows.first?.safeAreaInsets.top {
-            topPadding = topInset
-            
-            NSLayoutConstraint.activate([
-                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
-                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
-        }
+        tableView.anchor(top: nonAlcoholicLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor
+                             )
+//        var topPadding: CGFloat = 0.0
+//        if let topInset = UIApplication.shared.windows.first?.safeAreaInsets.top {
+//            topPadding = topInset
+//
+//            NSLayoutConstraint.activate([
+//                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//                tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
+//                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//            ])
+  //      }
 
         view.addSubview(randomButton)
         randomButton.setDimensions(height: 50, width: 50)
@@ -104,6 +133,22 @@ class HomeViewController: UIViewController  {
                             right: view.safeAreaLayoutGuide.rightAnchor,
                             paddingBottom: 20,
                             paddingRight: 20)
+        
+        
+     
+       
+        
+        view.addSubview(nonAlcoholicLabel)
+        nonAlcoholicLabel.setDimensions(height: 50, width: 150)
+        nonAlcoholicLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor,
+                              paddingTop: 20, paddingLeft: 20)
+        
+        view.addSubview(nonAlcoholicSwitch)
+        nonAlcoholicSwitch.setDimensions(height: 50, width: 80)
+        nonAlcoholicSwitch.anchor(top: nonAlcoholicLabel.topAnchor,
+                                  left: nonAlcoholicLabel.rightAnchor, right: view.safeAreaLayoutGuide.rightAnchor,
+                                  paddingTop: 10, paddingLeft: 40, paddingRight: 20)
+
     }
     
     private func showSearchBarButton(shouldShow: Bool) {
