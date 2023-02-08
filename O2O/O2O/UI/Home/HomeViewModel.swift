@@ -19,9 +19,10 @@ class HomeViewModel {
     
     var beers = [BeerModel]()
     var newBeers = [BeerModel]()
+    var onlyIPABeers = [BeerModel]()
     var searchText: String?
     var page = 1
-    var canAddMore: Bool = true
+    var onlyIPA: Bool = false
     
     // MARK: - Lifecycle
     
@@ -30,7 +31,11 @@ class HomeViewModel {
     }
     
     // MARK: - Helpers
-    
+
+    func numberOfRows() -> Int {
+        return onlyIPA ? onlyIPABeers.count : beers.count
+    }
+
     func fetchData() {
         let path = (self.searchText ?? "") + "&page=\(page)"
         service.fetch(.data, textSearch: path) { [weak self ] (result: ResultResponse<[BeerModel]>) in
@@ -123,6 +128,19 @@ class HomeViewModel {
                 self.view?.reload()
             }
 
+        }
+    }
+
+    func isOnlyIPA() {
+        if onlyIPA {
+            DispatchQueue.main.async {
+                for beer in self.beers {
+                    if beer.tagline.contains("IPA") || beer.name.contains("IPA") {
+                        self.onlyIPABeers.append(beer)
+                    }
+                }
+                self.view?.reload()
+            }
         }
     }
 }

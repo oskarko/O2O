@@ -42,7 +42,7 @@ class HomeViewController: UIViewController  {
         button.tintColor = .darkGray
         button.imageView?.setDimensions(height: 40,
                                         width: 40)
-        button.addTarget(self, action: #selector(showRandomBeer), for: .touchUpInside)
+       // button.addTarget(self, action: #selector(showRandomBeer), for: .touchUpInside)
         return button
     }()
     
@@ -55,12 +55,11 @@ class HomeViewController: UIViewController  {
     }()
     private let nonAlcoholicSwitch: UISwitch = {
         let switchControl  = UISwitch()
-        switchControl.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
         switchControl.isOn = true
         switchControl.isEnabled = true
         switchControl.onTintColor =  UIColor(red: 247/255, green: 132/255, blue: 15/255, alpha: 1.0)
         switchControl.translatesAutoresizingMaskIntoConstraints = false
-        switchControl.setOn(true, animated: false)
+        switchControl.setOn(false, animated: false)
         return switchControl
     }()
     
@@ -85,12 +84,15 @@ class HomeViewController: UIViewController  {
     
     @objc func switchStateDidChange(_ sender:UISwitch!)
        {
-           if (sender.isOn == true){
-               print("UISwitch state is now ON")
-           }
-           else{
-               print("UISwitch state is now Off")
-           }
+           viewModel.onlyIPA = sender.isOn
+           viewModel.isOnlyIPA()
+           tableView.reloadData()
+//           if (sender.isOn == true){
+//               print("UISwitch state is now ON")
+//           }
+//           else{
+//               print("UISwitch state is now Off")
+//           }
        }
 
     // MARK: - Helpers
@@ -111,18 +113,6 @@ class HomeViewController: UIViewController  {
             textField.backgroundColor = .lightText
         }
 
-        view.addSubview(randomButton)
-        randomButton.setDimensions(height: 50, width: 50)
-        randomButton.layer.cornerRadius = 25
-        randomButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                            right: view.safeAreaLayoutGuide.rightAnchor,
-                            paddingBottom: 20,
-                            paddingRight: 20)
-        
-        
-     
-       
-        
         view.addSubview(nonAlcoholicLabel)
         nonAlcoholicLabel.setDimensions(height: 50, width: 150)
         nonAlcoholicLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor,
@@ -133,10 +123,21 @@ class HomeViewController: UIViewController  {
         nonAlcoholicSwitch.anchor(top: nonAlcoholicLabel.topAnchor,
                                   left: nonAlcoholicLabel.rightAnchor, right: view.safeAreaLayoutGuide.rightAnchor,
                                   paddingTop: 10, paddingLeft: 40, paddingRight: 20)
+        nonAlcoholicSwitch.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
 
         view.addSubview(tableView)
         tableView.anchor(top: nonAlcoholicLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor
                              )
+
+        view.addSubview(randomButton)
+        randomButton.setDimensions(height: 50, width: 50)
+        randomButton.layer.cornerRadius = 25
+        randomButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                            right: view.safeAreaLayoutGuide.rightAnchor,
+                            paddingBottom: 20,
+                            paddingRight: 20)
+        randomButton.addTarget(self, action: #selector(showRandomBeer), for: .touchUpInside)
+
 
     }
     
@@ -176,19 +177,19 @@ extension HomeViewController: HomeViewControllerProtocol {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.beers.count
+        return viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        let beers = viewModel.onlyIPA ? viewModel.onlyIPABeers : viewModel.beers
         if let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell {
-            if let imageURL = viewModel.beers[indexPath.row].imageURL {
+            if let imageURL = beers[indexPath.row].imageURL {
                 cell.itemImage.sd_setImage(with: URL(string: imageURL))
             } else {
                 cell.itemImage.image = UIImage(named: "beer")
             }
-            cell.itemNameLabel.text = viewModel.beers[indexPath.row].name
-            cell.itemDescriptionLabel.text = viewModel.beers[indexPath.row].tagline
+            cell.itemNameLabel.text = beers[indexPath.row].name
+            cell.itemDescriptionLabel.text = beers[indexPath.row].tagline
             return cell
         }
 
@@ -214,6 +215,8 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {}
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        nonAlcoholicSwitch.isOn = false
+        viewModel.onlyIPA = false
         viewModel.searchByFood(searchText: searchText)
     }
     

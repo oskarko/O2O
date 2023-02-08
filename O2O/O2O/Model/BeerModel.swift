@@ -12,12 +12,13 @@ import Foundation
 // MARK: - BeerModelElement
 struct BeerModel: Codable {
     let id: Int?
-    let name: String?
-    let tagline: String?
+    let name: String
+    let tagline: String
     let firstBrewed: String?
     let description: String?
     let imageURL: String?
     let foodPairing: [String]?
+    let abv: Double?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,5 +28,6 @@ struct BeerModel: Codable {
         case description
         case imageURL = "image_url"
         case foodPairing = "food_pairing"
+        case abv
     }
 }

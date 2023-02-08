@@ -11,6 +11,7 @@ enum ServiceType {
     case data
     case random
     
+    
     var urlString: String {
         switch self {
         case .data: return "https://api.punkapi.com/v2/beers?food="
