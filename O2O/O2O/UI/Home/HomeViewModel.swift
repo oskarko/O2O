@@ -134,6 +134,7 @@ class HomeViewModel {
     func isOnlyIPA() {
         if onlyIPA {
             DispatchQueue.main.async {
+                self.onlyIPABeers = []
                 for beer in self.beers {
                     if beer.tagline.contains("IPA") || beer.name.contains("IPA") {
                         self.onlyIPABeers.append(beer)

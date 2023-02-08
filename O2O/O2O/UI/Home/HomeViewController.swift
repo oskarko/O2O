@@ -37,23 +37,22 @@ class HomeViewController: UIViewController  {
 
     private let randomButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "questionmark"), for: .normal)
+        button.setImage(UIImage(systemName: "dice"), for: .normal)
         button.backgroundColor = UIColor(red: 247/255, green: 132/255, blue: 15/255, alpha: 1.0)
         button.tintColor = .darkGray
-        button.imageView?.setDimensions(height: 40,
-                                        width: 40)
-       // button.addTarget(self, action: #selector(showRandomBeer), for: .touchUpInside)
+        button.imageView?.setDimensions(height: 30,
+                                        width: 30)
         return button
     }()
     
-    private let nonAlcoholicLabel: UILabel = {
+    private let onlyIPALabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.text = "Non-Alcoholic: "
+        label.text = "Only IPA: "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private let nonAlcoholicSwitch: UISwitch = {
+    private let onlyIPASwitch: UISwitch = {
         let switchControl  = UISwitch()
         switchControl.isOn = true
         switchControl.isEnabled = true
@@ -87,12 +86,6 @@ class HomeViewController: UIViewController  {
            viewModel.onlyIPA = sender.isOn
            viewModel.isOnlyIPA()
            tableView.reloadData()
-//           if (sender.isOn == true){
-//               print("UISwitch state is now ON")
-//           }
-//           else{
-//               print("UISwitch state is now Off")
-//           }
        }
 
     // MARK: - Helpers
@@ -113,20 +106,20 @@ class HomeViewController: UIViewController  {
             textField.backgroundColor = .lightText
         }
 
-        view.addSubview(nonAlcoholicLabel)
-        nonAlcoholicLabel.setDimensions(height: 50, width: 150)
-        nonAlcoholicLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor,
+        view.addSubview(onlyIPALabel)
+        onlyIPALabel.setDimensions(height: 50, width: 150)
+        onlyIPALabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor,
                               paddingTop: 20, paddingLeft: 20)
         
-        view.addSubview(nonAlcoholicSwitch)
-        nonAlcoholicSwitch.setDimensions(height: 50, width: 80)
-        nonAlcoholicSwitch.anchor(top: nonAlcoholicLabel.topAnchor,
-                                  left: nonAlcoholicLabel.rightAnchor, right: view.safeAreaLayoutGuide.rightAnchor,
+        view.addSubview(onlyIPASwitch)
+        onlyIPASwitch.setDimensions(height: 50, width: 80)
+        onlyIPASwitch.anchor(top: onlyIPALabel.topAnchor,
+                                  left: onlyIPALabel.rightAnchor, right: view.safeAreaLayoutGuide.rightAnchor,
                                   paddingTop: 10, paddingLeft: 40, paddingRight: 20)
-        nonAlcoholicSwitch.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
+        onlyIPASwitch.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
 
         view.addSubview(tableView)
-        tableView.anchor(top: nonAlcoholicLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor
+        tableView.anchor(top: onlyIPALabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor
                              )
 
         view.addSubview(randomButton)
@@ -208,15 +201,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
 // MARK: - UISearchBarDelegate
 extension HomeViewController: UISearchBarDelegate {
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {}
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        search(shouldShow: false)
+        searchBar.text = ""
+        viewModel.searchByFood(searchText: "")
+    }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {}
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {}
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        nonAlcoholicSwitch.isOn = false
-        viewModel.onlyIPA = false
         viewModel.searchByFood(searchText: searchText)
     }
     
