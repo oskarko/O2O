@@ -14,9 +14,14 @@ class DetailsViewModel {
     
     weak var view: DetailsViewControllerProtocol?
     var router: DetailsRouter?
+
+    var beer: BeerModel?
     
     // MARK: - Helpers
-    
+
+    init(item: BeerModel) {
+            self.beer = item
+        }
     
     
 }

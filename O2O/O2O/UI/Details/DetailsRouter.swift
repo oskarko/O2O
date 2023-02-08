@@ -16,16 +16,16 @@ class DetailsRouter {
 
     // MARK: - Helpers
     
-    static func getViewController() -> DetailsViewController {
-        let configuration = configureModule()
+    static func getViewController(item: BeerModel) -> DetailsViewController {
+        let configuration = configureModule(item: item)
 
         return configuration.vc
     }
     
-    private static func configureModule() -> (vc: DetailsViewController, vm: DetailsViewModel, rt: DetailsRouter) {
+    private static func configureModule(item: BeerModel) -> (vc: DetailsViewController, vm: DetailsViewModel, rt: DetailsRouter) {
         let viewController = DetailsViewController()
         let router = DetailsRouter()
-        let viewModel = DetailsViewModel()
+        let viewModel = DetailsViewModel(item: item)
 
         viewController.viewModel = viewModel
 

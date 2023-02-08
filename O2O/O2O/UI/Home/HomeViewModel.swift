@@ -44,18 +44,27 @@ class HomeViewModel {
                 self.view?.reload()
             case .failure(let error):
                 print(error.message ?? "")
+                self.beers = []
+                self.view?.reload()
             }
         }
     }
     
     func searchByFood(searchText: String?){
         
-        if let searchText = searchText {
+        if searchText != "", let searchText = searchText {
             self.searchText = searchText.replacingOccurrences(of: " ", with: "_")
             fetchData()
         } else {
-            self.beers.removeAll()
-            view?.reload()
+            DispatchQueue.main.async {
+                self.beers.removeAll()
+                self.view?.reload()
+            }
         }
+    }
+
+    func didSelectRowAt(_ indexPath: IndexPath) {
+        let item = beers[indexPath.row]
+        self.router?.toDetails(item: item)
     }
 }

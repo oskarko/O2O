@@ -38,5 +38,12 @@ class HomeRouter {
     }
     
     // MARK: - Routes
+
+    func toDetails(item: BeerModel) {
+        DispatchQueue.main.async {
+            let detailsView = DetailsRouter.getViewController(item: item)
+            self.viewController?.navigationController?.pushViewController(detailsView, animated: true)
+        }
+    }
     
 }

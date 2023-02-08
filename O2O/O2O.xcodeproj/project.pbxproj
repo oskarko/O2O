@@ -29,6 +29,9 @@
 		F65DC21F29929F77003010B1 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21B29929F77003010B1 /* DetailsViewController.swift */; };
 		F65DC22029929F77003010B1 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC21C29929F77003010B1 /* DetailsViewModel.swift */; };
 		F65DC22129929F77003010B1 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F65DC21D29929F77003010B1 /* DetailsViewController.xib */; };
+		F65DC2252992DFDC003010B1 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC2232992DFDC003010B1 /* HomeCell.swift */; };
+		F65DC2262992DFDC003010B1 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F65DC2242992DFDC003010B1 /* HomeCell.xib */; };
+		F65DC2282992E1BE003010B1 /* extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65DC2272992E1BE003010B1 /* extension+UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		F65DC21B29929F77003010B1 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		F65DC21C29929F77003010B1 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		F65DC21D29929F77003010B1 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		F65DC2232992DFDC003010B1 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		F65DC2242992DFDC003010B1 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		F65DC2272992E1BE003010B1 /* extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				ECAF64D92992ABD4002EE2EA /* extension+UIViewController.swift */,
+				F65DC2272992E1BE003010B1 /* extension+UIView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 		F65DC21029929F2D003010B1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F65DC2222992DFC4003010B1 /* HomeCell */,
 				F65DC21129929F4F003010B1 /* HomeRouter.swift */,
 				F65DC21229929F4F003010B1 /* HomeViewController.swift */,
 				F65DC21329929F4F003010B1 /* HomeViewModel.swift */,
@@ -219,6 +227,15 @@
 				F65DC21D29929F77003010B1 /* DetailsViewController.xib */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		F65DC2222992DFC4003010B1 /* HomeCell */ = {
+			isa = PBXGroup;
+			children = (
+				F65DC2232992DFDC003010B1 /* HomeCell.swift */,
+				F65DC2242992DFDC003010B1 /* HomeCell.xib */,
+			);
+			path = HomeCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +352,7 @@
 				F65DC1EA29929E93003010B1 /* Assets.xcassets in Resources */,
 				F65DC22129929F77003010B1 /* DetailsViewController.xib in Resources */,
 				F65DC21829929F4F003010B1 /* HomeViewController.xib in Resources */,
+				F65DC2262992DFDC003010B1 /* HomeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,8 +379,10 @@
 			files = (
 				ECAF64DA2992ABD4002EE2EA /* extension+UIViewController.swift in Sources */,
 				F65DC21629929F4F003010B1 /* HomeViewController.swift in Sources */,
+				F65DC2282992E1BE003010B1 /* extension+UIView.swift in Sources */,
 				F65DC21729929F4F003010B1 /* HomeViewModel.swift in Sources */,
 				ECAF64D52992A626002EE2EA /* BeerModel.swift in Sources */,
+				F65DC2252992DFDC003010B1 /* HomeCell.swift in Sources */,
 				F65DC21F29929F77003010B1 /* DetailsViewController.swift in Sources */,
 				F65DC21529929F4F003010B1 /* HomeRouter.swift in Sources */,
 				F65DC1E129929E91003010B1 /* AppDelegate.swift in Sources */,

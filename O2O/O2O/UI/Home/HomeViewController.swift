@@ -26,7 +26,7 @@ class HomeViewController: UIViewController  {
         tableView.dataSource = self
         tableView.rowHeight = 80.0
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(HomeCell.nib, forCellReuseIdentifier: HomeCell.identifier)
         return tableView
     }()
     
@@ -50,18 +50,18 @@ class HomeViewController: UIViewController  {
     private func configureUI() {
         view.backgroundColor = .white
         
-        configureNavigationBar(withTitle: "Search Bar", prefersLargeTitles: true, barTintColor: .systemPink)
+        configureNavigationBar(withTitle: "Search your beer", prefersLargeTitles: true, barTintColor: .systemPink)
         
         showSearchBarButton(shouldShow: true)
         
         searchBar.sizeToFit()
         searchBar.delegate = self
-        searchBar.placeholder = "Search your beer"
+        searchBar.placeholder = "Enter a food name"
         definesPresentationContext = false
         
         if let textField = searchBar.value(forKey: "searchField") as? UITextField {
             textField.textColor = .darkGray
-            textField.backgroundColor = .white
+            textField.backgroundColor = .lightText
         }
         
         view.addSubview(tableView)
@@ -81,20 +81,15 @@ class HomeViewController: UIViewController  {
     }
     
     private func showSearchBarButton(shouldShow: Bool) {
-        if shouldShow {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
-                                                                target: self,
-                                                                action: #selector(handleShowSearchBar))
-        } else {
-            navigationItem.rightBarButtonItem = nil
-        }
+       navigationItem.rightBarButtonItem = shouldShow ? UIBarButtonItem(barButtonSystemItem: .search,
+                                                                        target: self,
+                                                                        action: #selector(handleShowSearchBar)) : nil
     }
     
     private func search(shouldShow: Bool) {
         showSearchBarButton(shouldShow: !shouldShow)
         searchBar.showsCancelButton = shouldShow
         navigationItem.titleView = shouldShow ? searchBar : nil
-        
     }
     
 }
@@ -102,33 +97,38 @@ class HomeViewController: UIViewController  {
 // MARK: - HomeViewControllerProtocol
 
 extension HomeViewController: HomeViewControllerProtocol {
-    
     func reload(){
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
     }
-    
 }
-
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.beers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var content = cell.defaultContentConfiguration()
-        content.text = viewModel.beers[indexPath.row].name
-        content.secondaryText = viewModel.beers[indexPath.row].tagline
-        cell.contentConfiguration = content
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell {
+            cell.itemImage.sd_setImage(with: URL(string: viewModel.beers[indexPath.row].imageURL))
+            cell.itemNameLabel.text = viewModel.beers[indexPath.row].name
+            cell.itemDescriptionLabel.text = viewModel.beers[indexPath.row].description
+            return cell
+        }
+
+        return UITableViewCell()
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRowAt(indexPath)
+    }
 }
+
+// MARK: - UISearchBarDelegate
 extension HomeViewController: UISearchBarDelegate {
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         search(shouldShow: false)
     }
