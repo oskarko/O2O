@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
-            landmarkName = "switchStateDidChange(_:)"
-            landmarkType = "7">
+            landmarkName = "HomeViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,26 +30,42 @@
             filePath = "O2O/UI/Home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "showRandomBeer()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D6471AAA-F295-4BD2-99C3-AB7321336DE9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "O2O/UI/Home/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "switchStateDidChange(_:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C029AAF0-6FB1-403E-95A5-CAAC431DAFD6 - c6f01b213985d21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "O2O.HomeViewModel.showRandomBeer() -&gt; ()"
+                  moduleName = "O2O"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lupemorales/O2O/O2O/O2O/UI/Home/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "C029AAF0-6FB1-403E-95A5-CAAC431DAFD6 - 7997ce4858732be1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (O2O.ResultResponse&lt;Swift.Array&lt;O2O.BeerModel&gt;&gt;) -&gt; () in O2O.HomeViewModel.showRandomBeer() -&gt; ()"
+                  moduleName = "O2O"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lupemorales/O2O/O2O/O2O/UI/Home/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "231">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

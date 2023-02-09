@@ -206,6 +206,7 @@ extension HomeViewController: UISearchBarDelegate {
         search(shouldShow: false)
         searchBar.text = ""
         viewModel.searchByFood(searchText: "")
+        onlyIPASwitch.isOn = false
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {}

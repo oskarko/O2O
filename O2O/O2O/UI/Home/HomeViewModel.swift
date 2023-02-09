@@ -31,11 +31,11 @@ class HomeViewModel {
     }
     
     // MARK: - Helpers
-
+    
     func numberOfRows() -> Int {
         return onlyIPA ? onlyIPABeers.count : beers.count
     }
-
+    
     func fetchData() {
         let path = (self.searchText ?? "") + "&page=\(page)"
         service.fetch(.data, textSearch: path) { [weak self ] (result: ResultResponse<[BeerModel]>) in
@@ -45,9 +45,12 @@ class HomeViewModel {
             case .success(let data):
                 if !data.isEmpty {
                     if self.page == 1 {
-                        self.beers = data
-                        self.isOnlyIPA()
-                        self.view?.reload()
+                        DispatchQueue.main.async {
+                            self.beers = data
+                            self.isOnlyIPA()
+                            self.view?.reload()
+                        }
+                    
                     } else {
                         DispatchQueue.main.async {
                             self.newBeers = []
@@ -62,7 +65,7 @@ class HomeViewModel {
                         self.view?.reload()
                     }
                 }
-
+                
             case .failure(let error):
                 self.view?.showError(error.message ?? "")
                 self.beers = []
@@ -84,60 +87,58 @@ class HomeViewModel {
             }
         }
     }
-
+    
     func cellForRow(_ indexPath: IndexPath) -> BeerModel {
         let beers = onlyIPA ? onlyIPABeers : beers
         return beers[indexPath.row]
     }
-
+    
     func didSelectRowAt(_ indexPath: IndexPath) {
         let item = beers[indexPath.row]
         self.router?.toDetails(item: item)
     }
-
+    
     func showRandomBeer() {
         service.fetch(.random, textSearch: "" ) { [weak self ] (result: ResultResponse<[BeerModel]>) in
             guard let self = self else { return }
-
+            
             switch result {
             case .success(let data):
                 print(data)
                 if let beer = data.first {
                     self.router?.toDetails(item: beer)
                 }
-
             case .failure(let error):
                 self.view?.showError(error.message ?? "")
             }
         }
     }
-
+    
     func prefetchRows(at indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLastCell) {
             loadMoreItems()
         }
     }
-
+    
     private func isLastCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row == beers.count - 1 && newBeers.count % 25 == 0
     }
-
+    
     func loadMoreItems() {
-            page += 1
-            fetchData()
+        page += 1
+        fetchData()
     }
-
+    
     func addMoreItems(_ items: [BeerModel]) {
         if !items.isEmpty {
-            self.beers.append(contentsOf: items)
-            self.isOnlyIPA()
             DispatchQueue.main.async {
+                self.beers.append(contentsOf: items)
+                self.isOnlyIPA()
                 self.view?.reload()
             }
-
         }
     }
-
+    
     func isOnlyIPA() {
         if onlyIPA {
             DispatchQueue.main.async {
