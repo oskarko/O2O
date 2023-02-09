@@ -29,7 +29,6 @@ class HomeViewController: UIViewController  {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.prefetchDataSource = self
-        tableView.rowHeight = 80.0
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(HomeCell.nib, forCellReuseIdentifier: HomeCell.identifier)
         return tableView
@@ -174,15 +173,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let beers = viewModel.onlyIPA ? viewModel.onlyIPABeers : viewModel.beers
+        var foods = "Food pairings: \n" 
+                let beer = viewModel.cellForRow(indexPath)
         if let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell {
-            if let imageURL = beers[indexPath.row].imageURL {
+            if let imageURL = beer.imageURL {
                 cell.itemImage.sd_setImage(with: URL(string: imageURL))
             } else {
                 cell.itemImage.image = UIImage(named: "beer")
             }
-            cell.itemNameLabel.text = beers[indexPath.row].name
-            cell.itemDescriptionLabel.text = beers[indexPath.row].tagline
+            cell.itemNameLabel.text = beer.name
+                        for food in beer.foodPairing ?? [] { foods = foods + "\n" + food}
+                        cell.itemDescriptionLabel.text = foods
             return cell
         }
 

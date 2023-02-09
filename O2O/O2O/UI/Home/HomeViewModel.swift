@@ -46,6 +46,7 @@ class HomeViewModel {
                 if !data.isEmpty {
                     if self.page == 1 {
                         self.beers = data
+                        self.isOnlyIPA()
                         self.view?.reload()
                     } else {
                         DispatchQueue.main.async {
@@ -53,6 +54,12 @@ class HomeViewModel {
                             self.newBeers = data
                             self.addMoreItems(self.newBeers)
                         }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.beers.removeAll()
+                        self.onlyIPABeers.removeAll()
+                        self.view?.reload()
                     }
                 }
 
@@ -72,9 +79,15 @@ class HomeViewModel {
         } else {
             DispatchQueue.main.async {
                 self.beers.removeAll()
+                self.onlyIPABeers.removeAll()
                 self.view?.reload()
             }
         }
+    }
+
+    func cellForRow(_ indexPath: IndexPath) -> BeerModel {
+        let beers = onlyIPA ? onlyIPABeers : beers
+        return beers[indexPath.row]
     }
 
     func didSelectRowAt(_ indexPath: IndexPath) {
@@ -116,14 +129,8 @@ class HomeViewModel {
 
     func addMoreItems(_ items: [BeerModel]) {
         if !items.isEmpty {
-            let previousSize = self.beers.count
             self.beers.append(contentsOf: items)
-            let newSize = self.beers.count
-            var newIndices: [IndexPath] = []
-            for idx in previousSize..<newSize{
-                newIndices.append( IndexPath(item: idx, section: 0) )
-            }
-
+            self.isOnlyIPA()
             DispatchQueue.main.async {
                 self.view?.reload()
             }

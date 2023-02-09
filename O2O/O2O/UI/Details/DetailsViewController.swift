@@ -19,6 +19,7 @@ class DetailsViewController: UIViewController {
     
     var viewModel: DetailsViewModel!
     
+    @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var imageDetail: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -46,6 +47,7 @@ class DetailsViewController: UIViewController {
         }
         nameLabel.text = beer.name
         descriptionLabel.text = beer.description
+        taglineLabel.text = beer.tagline
     }
     
 }

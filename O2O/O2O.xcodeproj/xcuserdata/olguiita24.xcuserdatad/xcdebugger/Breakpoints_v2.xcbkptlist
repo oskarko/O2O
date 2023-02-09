@@ -14,8 +14,8 @@
             filePath = "O2O/UI/Home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "loadMoreItems()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "O2O/UI/Home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "loadMoreItems()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "O2O/UI/Home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "addMoreItems(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,25 +78,9 @@
             filePath = "O2O/UI/Home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "isOnlyIPA()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FFF060CC-2023-4B30-AD79-040A8261B84D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "O2O/UI/Home/HomeViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "addMoreItems(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
