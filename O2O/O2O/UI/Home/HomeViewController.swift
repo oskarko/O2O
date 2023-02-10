@@ -80,10 +80,8 @@ class HomeViewController: UIViewController  {
         viewModel.showRandomBeer()
     }
     
-    @objc func switchStateDidChange(_ sender:UISwitch!)
-       {
+    @objc func switchStateDidChange(_ sender:UISwitch!) {
            viewModel.onlyIPA = sender.isOn
-           viewModel.isOnlyIPA()
            tableView.reloadData()
        }
 
@@ -92,7 +90,6 @@ class HomeViewController: UIViewController  {
     private func configureUI() {
 
         configureNavigationBar(withTitle: "Find your beer", prefersLargeTitles: true, barTintColor: barTintColor)
-        
         showSearchBarButton(shouldShow: true)
         
         searchBar.sizeToFit()
@@ -157,7 +154,7 @@ extension HomeViewController: HomeViewControllerProtocol {
         }
     }
     
-    func reload(){
+    func reload() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -173,8 +170,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var foods = "Food pairings: \n" 
-                let beer = viewModel.cellForRow(indexPath)
+        var foods = "Food pairings: \n"
+        let beer = viewModel.cellForRow(indexPath)
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell {
             if let imageURL = beer.imageURL {
                 cell.itemImage.sd_setImage(with: URL(string: imageURL))
@@ -182,8 +180,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
                 cell.itemImage.image = UIImage(named: "beer")
             }
             cell.itemNameLabel.text = beer.name
-                        for food in beer.foodPairing ?? [] { foods = foods + "\n" + food}
-                        cell.itemDescriptionLabel.text = foods
+            
+            for food in beer.foodPairing ?? [] {
+                foods = foods + "\n" + food
+            }
+            cell.itemDescriptionLabel.text = foods
+            
             return cell
         }
 
@@ -200,6 +202,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
 }
 
 // MARK: - UISearchBarDelegate
+
 extension HomeViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -18,8 +18,6 @@ class HomeViewModel {
     private var service: ServiceProtocol
     
     var beers = [BeerModel]()
-    var newBeers = [BeerModel]()
-    var onlyIPABeers = [BeerModel]()
     var searchText: String?
     var page = 1
     var onlyIPA: Bool = false
@@ -33,7 +31,7 @@ class HomeViewModel {
     // MARK: - Helpers
     
     func numberOfRows() -> Int {
-        return onlyIPA ? onlyIPABeers.count : beers.count
+        return onlyIPA ? beers.filter({ $0.tagline.contains("IPA") || $0.name.contains("IPA") }).count : beers.count
     }
     
     func fetchData() {
@@ -44,62 +42,42 @@ class HomeViewModel {
             switch result {
             case .success(let data):
                 if !data.isEmpty {
-                    if self.page == 1 {
-                        DispatchQueue.main.async {
-                            self.beers = data
-                            self.isOnlyIPA()
-                            self.view?.reload()
-                        }
-                    
-                    } else {
-                        DispatchQueue.main.async {
-                            self.newBeers = []
-                            self.newBeers = data
-                            self.addMoreItems(self.newBeers)
-                        }
-                    }
+                        self.beers.append(contentsOf: data)
                 } else {
-                    DispatchQueue.main.async {
-                        self.beers.removeAll()
-                        self.onlyIPABeers.removeAll()
-                        self.view?.reload()
-                    }
+                    self.beers.removeAll()
                 }
-                
             case .failure(let error):
                 self.view?.showError(error.message ?? "")
-                self.beers = []
-                self.view?.reload()
+                self.beers.removeAll()
             }
+            
+            self.view?.reload()
         }
     }
     
     func searchByFood(searchText: String?){
-        
         if searchText != "", let searchText = searchText {
             self.searchText = searchText.replacingOccurrences(of: " ", with: "_")
             fetchData()
         } else {
-            DispatchQueue.main.async {
-                self.beers.removeAll()
-                self.onlyIPABeers.removeAll()
-                self.view?.reload()
-            }
+            self.beers.removeAll()
+            self.view?.reload()
         }
     }
     
     func cellForRow(_ indexPath: IndexPath) -> BeerModel {
-        let beers = onlyIPA ? onlyIPABeers : beers
+        let beers = onlyIPA ? beers.filter({ $0.tagline.contains("IPA") || $0.name.contains("IPA") }) : beers
         return beers[indexPath.row]
     }
     
     func didSelectRowAt(_ indexPath: IndexPath) {
+        let beers = onlyIPA ? beers.filter({ $0.tagline.contains("IPA") || $0.name.contains("IPA") }) : beers
         let item = beers[indexPath.row]
         self.router?.toDetails(item: item)
     }
     
     func showRandomBeer() {
-        service.fetch(.random, textSearch: "" ) { [weak self ] (result: ResultResponse<[BeerModel]>) in
+        service.fetch(.random, textSearch: "") { [weak self ] (result: ResultResponse<[BeerModel]>) in
             guard let self = self else { return }
             
             switch result {
@@ -121,7 +99,7 @@ class HomeViewModel {
     }
     
     private func isLastCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row == beers.count - 1 && newBeers.count % 25 == 0
+        return indexPath.row == beers.count - 1 && beers.count % 25 == 0
     }
     
     func loadMoreItems() {
@@ -129,27 +107,4 @@ class HomeViewModel {
         fetchData()
     }
     
-    func addMoreItems(_ items: [BeerModel]) {
-        if !items.isEmpty {
-            DispatchQueue.main.async {
-                self.beers.append(contentsOf: items)
-                self.isOnlyIPA()
-                self.view?.reload()
-            }
-        }
-    }
-    
-    func isOnlyIPA() {
-        if onlyIPA {
-            DispatchQueue.main.async {
-                self.onlyIPABeers = []
-                for beer in self.beers {
-                    if beer.tagline.contains("IPA") || beer.name.contains("IPA") {
-                        self.onlyIPABeers.append(beer)
-                    }
-                }
-                self.view?.reload()
-            }
-        }
-    }
 }

@@ -20,8 +20,8 @@ class DetailsViewModel {
     // MARK: - Helpers
 
     init(item: BeerModel) {
-            self.beer = item
-        }
+        self.beer = item
+    }
     
     
 }

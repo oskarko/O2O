@@ -211,8 +211,8 @@
 			children = (
 				F65DC2222992DFC4003010B1 /* HomeCell */,
 				F65DC21129929F4F003010B1 /* HomeRouter.swift */,
-				F65DC21229929F4F003010B1 /* HomeViewController.swift */,
 				F65DC21329929F4F003010B1 /* HomeViewModel.swift */,
+				F65DC21229929F4F003010B1 /* HomeViewController.swift */,
 				F65DC21429929F4F003010B1 /* HomeViewController.xib */,
 			);
 			path = Home;
@@ -222,8 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				F65DC21A29929F77003010B1 /* DetailsRouter.swift */,
-				F65DC21B29929F77003010B1 /* DetailsViewController.swift */,
 				F65DC21C29929F77003010B1 /* DetailsViewModel.swift */,
+				F65DC21B29929F77003010B1 /* DetailsViewController.swift */,
 				F65DC21D29929F77003010B1 /* DetailsViewController.xib */,
 			);
 			path = Details;

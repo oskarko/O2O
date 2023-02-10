@@ -9,10 +9,6 @@
 import UIKit
 import SDWebImage
 
-protocol DetailsViewControllerProtocol: AnyObject {
-
-}
-
 class DetailsViewController: UIViewController {
     
     // MARK: - Properties
@@ -54,6 +50,5 @@ class DetailsViewController: UIViewController {
 
 // MARK: - DetailsViewControllerProtocol
 
-extension DetailsViewController: DetailsViewControllerProtocol {
-
-}
+protocol DetailsViewControllerProtocol: AnyObject { }
+extension DetailsViewController: DetailsViewControllerProtocol { }
