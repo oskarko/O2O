@@ -41,8 +41,14 @@ class HomeViewModel {
             
             switch result {
             case .success(let data):
+                
                 if !data.isEmpty {
+                    if self.page == 1 {
+                        self.beers = data
+                    } else {
                         self.beers.append(contentsOf: data)
+                        
+                    }
                 } else {
                     self.beers.removeAll()
                 }
